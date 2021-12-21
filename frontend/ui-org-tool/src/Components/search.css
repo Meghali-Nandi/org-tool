@@ -1,0 +1,15 @@
+.search{
+    background-color: #eee;
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    font-size: large;
+}
+.searchInputs{
+    width: 100%;
+}
+input{
+    width: 40%;
+    margin-top: 20px;
+    padding: 10px;
+}
