@@ -1,6 +1,5 @@
 import React from "react";
 import './page.css';
-import Subordinate from "./Subordinate";
 import Search from "./search";
 
 class Page extends React.Component {
@@ -31,13 +30,12 @@ class Page extends React.Component {
         
 	}
 
-    createArray(items){
-        
+    createArray(items){        
         if(!items)
             return;
         items.map((item) => {
-            this.state.names.push(item.name);
-            this.createArray(item.subordinates);
+            this.state.names.push(item.name+"  ("+item.title+")");
+            return this.createArray(item.subordinates);
         })
         
     }
@@ -49,30 +47,13 @@ class Page extends React.Component {
 			<h3> Fetching data.... </h3> </div> ;
         else{
             this.createArray(items);
-            console.log(names);
         }
-
-		return (
-            
+		return (            
             <div>
-                <Search data={this.state.names} />
-
-                {items[0].name}  ({items[0].title})
-            {          
-
-                    items[0].subordinates.map((item) => {
-                        return (
-                            <div>
-                                    <Subordinate key={item.id} subs={item} />
-                            </div>
-                          
-                        )
-                      })
-              
-            }
-          </div>
-	);
-}
+                <Search data={names} items={items}/>
+            </div>
+	    );
+    }
 }
 
 export default Page;
